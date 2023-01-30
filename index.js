@@ -35,7 +35,7 @@ document.getElementById("draw-cards").addEventListener("click", () => {
     fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
         .then(function(data){
-            console.log(data)
+            console.log(data.cards)
             let message = ''
             remainingCards = data.remaining
             if(data.cards[0].value > data.cards[1].value){
