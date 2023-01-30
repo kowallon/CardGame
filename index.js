@@ -7,8 +7,6 @@ let remainingCards
 const container = document.getElementById("container")
 const cardsCount = document.getElementById("cardsLeft")
 
-window.onload = handleClick()
-
 function handleClick() {
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
         .then(res => res.json())
