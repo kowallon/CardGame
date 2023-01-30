@@ -5,6 +5,7 @@ let myPoints = 0
 let opponentPoints = 0
 let remainingCards
 const container = document.getElementById("container")
+const cardsCount = document.getElementById("cardsLeft")
 
 window.onload = handleClick()
 
@@ -15,6 +16,15 @@ function handleClick() {
             console.log(data)
             deckId = data.deck_id
             localStorage.setItem("deck", deckId)
+            cardsCount.textContent = `Cards left: ${data.remaining}`
+            myPoints = 0
+            opponentPoints = 0
+            container.innerHTML = `<h3>Your score: 0</h3>
+            <div class="card" id="myCard">  
+            </div>
+            <div class="card" id="computerCard">   
+            </div>
+            <h3>Opponent score: 0</h3>`
         })
 }
 
@@ -25,7 +35,7 @@ document.getElementById("draw-cards").addEventListener("click", () => {
     fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
         .then(function(data){
-            //console.log(data)
+            console.log(data)
             let message = ''
             remainingCards = data.remaining
             if(data.cards[0].value > data.cards[1].value){
@@ -48,7 +58,7 @@ document.getElementById("draw-cards").addEventListener("click", () => {
             </div>
             <h3>Opponent score: ${opponentPoints}</h3>`
 
-            document.getElementById("cardsLeft").textContent = `Cards left: ${remainingCards}`
+            cardsCount.textContent = `Cards left: ${remainingCards}`
 
             let winningMessage 
 
